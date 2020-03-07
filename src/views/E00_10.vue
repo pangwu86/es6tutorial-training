@@ -5,11 +5,19 @@
     <section>
       <div class="code-block">
         <pre>
-        <code class="language-javascript">
-        {{ code1 }}
-      </code>
-      </pre>
+          <code class="language-javascript">
+          {{ code1 }}
+        </code>
+        </pre>
         <button @click="code1Run">RUN</button>
+      </div>
+      <div class="code-block">
+        <pre>
+          <code class="language-javascript">
+          {{ code2 }}
+        </code>
+        </pre>
+        <button @click="code2Run">RUN</button>
       </div>
     </section>
   </div>
@@ -21,14 +29,24 @@ export default {
   data: function() {
     return {
       code1: `
-        var a = [];
-        for (var i = 0; i < 10; i++) {
-          a[i] = function () {
-            console.log(i);
-          };
-        }
-        a[6](); // 10
-      `
+      // 老问题，希望的输出跟实际不一致
+      var a = [];
+      for (var i = 0; i < 10; i++) {
+        a[i] = function () {
+          console.log(i); // 希望按照0，1，2...来输出
+        };
+      }
+      a[6](); // 10
+      `,
+      code2: `
+      // let解决了上面的问题
+      var a = [];
+      for (let i = 0; i < 10; i++) {
+        a[i] = function () {
+          console.log(i);
+        };
+      }
+      a[6](); // 6`
     };
   },
   methods: {
@@ -40,6 +58,15 @@ export default {
         };
       }
       a[6](); // 10
+    },
+    code2Run() {
+      var a = [];
+      for (let i = 0; i < 10; i++) {
+        a[i] = function() {
+          console.log(i);
+        };
+      }
+      a[6](); // 6
     }
   },
   mounted() {
