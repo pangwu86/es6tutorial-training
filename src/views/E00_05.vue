@@ -1,6 +1,6 @@
 <template>
   <div class="epage">
-    <h1>第00章-10章</h1>
+    <h1>第00章-05章</h1>
     <h2>02.let和const</h2>
     <section>
       <div
